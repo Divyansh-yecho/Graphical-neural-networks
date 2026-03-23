@@ -1,0 +1,19 @@
+# Graph Neural Network (GCN) on MNIST
+
+This project implements a Graph Convolutional Network (GCN) using PyTorch Geometric for digit classification on the MNIST dataset.
+
+Each image is converted into a graph where:
+
+* Nodes represent pixels
+* Node features include pixel intensity along with normalized spatial coordinates (x, y)
+* Edges connect neighboring pixels to preserve spatial structure
+
+The model consists of multiple GCN layers followed by global mean pooling and a fully connected layer for classification.
+
+## Results
+
+The model achieves an accuracy of approximately **80%** on the test dataset.
+
+## Key Idea
+
+By incorporating spatial (x, y) information along with intensity, the model captures both structural and feature-based relationships in the image, making it suitable for graph-based learning.

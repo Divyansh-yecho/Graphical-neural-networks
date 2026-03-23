@@ -1,1 +1,2 @@
 Using a graph Attention model, with 3 features: Intensity, x, y for the nodes
+Only 4 epochs were run due to computational constraints during this particular training: ard 92% accuracy

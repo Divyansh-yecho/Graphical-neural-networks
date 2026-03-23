@@ -1,0 +1,30 @@
+### GraphSAGE Model (Post-GAT Refinement)
+
+This file implements a GraphSAGE-based model for MNIST digit classification on pixel-constructed graphs. It is a refinement over an earlier Graph Attention Network (GAT) implementation used in this repository.
+
+The initial GAT model achieved strong performance (~95% accuracy) by learning attention weights over neighboring pixels. However, given the highly regular grid structure of MNIST graphs, attention-based aggregation introduced unnecessary complexity and sensitivity to graph construction.
+
+GraphSAGE is used here as a more stable and efficient alternative.
+
+#### Why switch from GAT to GraphSAGE?
+
+* **Simpler aggregation**: Uses fixed neighborhood aggregation (mean/max) instead of learned attention, which is sufficient for grid-like data.
+* **Improved stability**: Less sensitive to noisy or redundant edges in dense pixel graphs.
+* **Lower computational cost**: Avoids multi-head attention overhead, leading to faster training.
+* **Better generalization**: Learns how to aggregate features rather than overfitting attention patterns.
+
+#### Key idea
+
+Each node updates its representation by aggregating features from its local neighborhood:
+
+x_i' = AGG({x_j : j ∈ N(i)})
+
+followed by a learned transformation. This makes the model more robust for structured graphs like images.
+
+#### Context in repository
+
+* Previous implementation: GAT (attention-based message passing)
+* Current implementation: GraphSAGE (aggregation-based message passing)
+* Purpose: Compare how different GNN paradigms behave on the same graph construction
+
+This file serves as a baseline for further extensions such as learnable edge weights, alternative aggregation functions, and hybrid GNN architectures.
